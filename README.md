@@ -1,1 +1,1 @@
-# Scop
+# C project template
