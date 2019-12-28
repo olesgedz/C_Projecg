@@ -6,7 +6,7 @@
 #    By: olesgedz <olesgedz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/28 20:37:14 by olesgedz          #+#    #+#              #
-#    Updated: 2019/12/28 20:44:10 by olesgedz         ###   ########.fr        #
+#    Updated: 2019/12/28 20:51:23 by olesgedz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = C
 FLAGS = -g # -Wall -Wextra -Werror
 CC = clang
 
-INCLUDES = 
+INCLUDES = -I include/
 
 HEADERS_DIRECTORY = 
 HEADERS_LIST = 
@@ -26,7 +26,7 @@ DIRECTORY =  $(shell pwd)
 # GLFW_DIRECTORY := $(DIRECTORY)/libs/glfw/
 # GLFW := $(GLFW_DIRECTORY)src/libglfw3.a
 
-SRCS_DIRECTORY = ./srcs/
+SRCS_DIRECTORY = ./src/
 SRCS_LIST = main.c
 
 OBJS_DIRECTORY = objects/
@@ -76,7 +76,7 @@ all: $(NAME) #$(MAKES)
 
 
 $(NAME): $(OBJS) $(HEADERS)
-	$(CC) $(FLAGS)  $(INCLUDES) $(OBJS)  -o $(NAME) $(LIBRARIES)
+	@$(CC) $(FLAGS)  $(INCLUDES) $(OBJS)  -o $(NAME) $(LIBRARIES)
 	@echo "$(CLEAR_LINE)[`expr $(CURRENT_FILES) '*' 100 / $(TOTAL_FILES) `%] $(COL_BLUE)[$(NAME)] $(COL_GREEN)Finished compilation. Output file : $(COL_VIOLET)$(PWD)/$(NAME)$(COL_END)"
 
 $(MAKES):
@@ -88,7 +88,7 @@ $(OBJS_DIRECTORY):
 
 $(OBJS_DIRECTORY)%.o : $(SRCS_DIRECTORY)%.c $(HEADERS)
 	@mkdir -p $(@D)
-	$(CC) $(FLAGS) -c $(INCLUDES) $< -o $@
+	@$(CC) $(FLAGS) -c $(INCLUDES) $< -o $@
 	@echo "$(CLEAR_LINE)[`expr $(CURRENT_FILES) '*' 100 / $(TOTAL_FILES) `%] $(COL_BLUE)[$(NAME)] $(COL_GREEN)Compiling file [$(COL_VIOLET)$<$(COL_GREEN)].($(CURRENT_FILES) / $(TOTAL_FILES))$(COL_END)$(BEGIN_LINE)"
 
 sub:
